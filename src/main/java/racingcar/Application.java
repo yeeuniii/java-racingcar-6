@@ -7,7 +7,7 @@ public class Application {
         Screen.displayResultMessage();
         while (race.isRunning()) {
             race.runRound();
-            Screen.displayResult(race.getResult());
+            Screen.displayResultOfRound(race.getResultOfRound());
         }
         Screen.displayWinners(race.getWinners());
     }

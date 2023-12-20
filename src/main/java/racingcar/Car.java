@@ -21,8 +21,9 @@ public class Car implements Comparable<Car> {
     }
 
     public void moveForward(int randomValue) {
-        if (randomValue >= 4)
-            numberOfMove++;
+        if (randomValue >= 4) {
+            this.numberOfMove++;
+        }
     }
 
     final public int getNumberOfMove() {
