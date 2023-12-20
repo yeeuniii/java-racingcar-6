@@ -7,37 +7,42 @@ import java.util.Collections;
 import java.util.List;
 
 public class Race {
-    static private final String MARK = "-";
+    static public final String MARK = "-";
 
     final private List<Car> cars;
-    final private int time;
+    final private int totalRound;
+    private int currentRound;
 
-    public Race(String[] names, String time) {
+
+    public Race(String[] names, String round) {
         this.cars = new ArrayList<>();
-        for (String name : names)
+        for (String name : names) {
             this.cars.add(new Car(name));
-        if (!isValidTime(time))
-            throw (new IllegalArgumentException("Invalid Argument"));
-        this.time = Integer.parseInt(time);
+        }
+        checkRound(round);
+        this.totalRound = Integer.parseInt(round);
+        this.currentRound = 0;
     }
 
-    private boolean isValidTime(String time) {
-        return time.matches("\\d+") || Integer.parseInt(time) > 0;
+    private void checkRound(String round) {
+        if (!isValidRound(round)) {
+            throw new IllegalArgumentException("Invalid Argument");
+        }
     }
 
-    public Race(List<Car> cars, int time) {
-        this.cars = cars;
-        this.time = time;
+    private boolean isValidRound(String round) {
+        return round.matches("[1-9]\\d*");
     }
 
-    public boolean isRunning(int time) {
-        return time < this.time;
+    public boolean isRunning() {
+        return this.currentRound < this.totalRound;
     }
 
     public void runRound() {
         for (Car car : cars) {
-            car.moveFoward(Randoms.pickNumberInRange(0, 9));
+            car.moveForward(Randoms.pickNumberInRange(0, 9));
         }
+        this.currentRound++;
     }
 
     public String getResult() {

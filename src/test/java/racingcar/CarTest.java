@@ -28,7 +28,7 @@ public class CarTest {
     @Test
     void 전진_확인() {
         Car car = new Car("yen");
-        car.moveFoward(4);
+        car.moveForward(4);
         int result = car.getNumberOfMove();
 
         assertThat(result).isEqualTo(1);
@@ -37,7 +37,7 @@ public class CarTest {
     @Test
     void 전진_안_하는_것_확인() {
         Car car = new Car("yen");
-        car.moveFoward(1);
+        car.moveForward(1);
         int result = car.getNumberOfMove();
 
         assertThat(result).isEqualTo(0);
